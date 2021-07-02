@@ -1,0 +1,50 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+
+public class ForFun {
+    public static void main(String[] args) throws IOException {
+       BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        String file1 = reader.readLine();
+        String file2 = reader.readLine();
+        reader.close();
+
+        ArrayList<Integer> list1 = new ArrayList<>();
+        ArrayList<Integer> list2 = new ArrayList<>();
+
+        BufferedReader reader1 = new BufferedReader(new FileReader(file1));
+        BufferedReader reader2 = new BufferedReader(new FileReader(file2));
+
+        while (reader1.ready()){
+            list1.add(Integer.parseInt(reader1.readLine()));
+        }
+        while (reader2.ready()){
+            list2.add(Integer.parseInt(reader2.readLine()));
+        }
+
+        reader1.close();
+        reader2.close();
+
+        int res1 = 0;
+        int res2 = 0;
+        for(int i = 1; i < list1.size(); i++){
+            for(int j = 2; j < list1.size(); j++){
+                if((list1.get(i) * list1.get(j)) % 14 == 0 && (list1.get(i) * list1.get(j)) > res1){
+                    res1 = list1.get(i) * list1.get(j);
+                }
+            }
+        }
+        for(int i = 1; i < list2.size(); i++){
+            for(int j = 2; j < list2.size(); j++){
+                if((list2.get(i) * list2.get(j)) % 14 == 0 && (list2.get(i) * list2.get(j)) > res2){
+                    res2 = list2.get(i) * list2.get(j);
+                }
+            }
+        }
+        System.out.println(" ------------- ");
+        System.out.println(res1);
+        System.out.println(res2);
+    }
+}
